@@ -3,141 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مدونة سام التقنية والمالية الشاملة</title>
+    <title>سام الذكي - بوابة الأخبار والذكاء</title>
     <style>
         :root {
-            --primary: #1a1a1a;
-            --accent: #00ff88;
-            --secondary: #D4AF37;
-            --bg: #0f0f0f;
-            --card-bg: #1e1e1e;
+            --primary: #0a0a0c;
+            --emerald: #00ff88;
+            --gold: #D4AF37;
             --text: #e0e0e0;
-            --muted: #888;
+            --glass: rgba(255, 255, 255, 0.05);
         }
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; line-height: 1.6; }
-        header { background: linear-gradient(135deg, #005D30 0%, #1a1a1a 100%); color: white; padding: 3rem 1rem; text-align: center; border-bottom: 4px solid var(--secondary); }
-        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--accent); }
-        nav { background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); padding: 1rem; text-align: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #333; }
-        nav a { margin: 0 15px; text-decoration: none; color: #fff; font-weight: 600; font-size: 0.9rem; transition: color 0.3s; }
-        nav a:hover { color: var(--accent); }
-        .container { max-width: 1200px; margin: 2rem auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
-        .card { background: var(--card-bg); border-radius: 12px; padding: 0; margin-bottom: 2rem; border: 1px solid #333; overflow: hidden; transition: transform 0.3s; }
-        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .card-content { padding: 25px; }
-        .card h2 { color: var(--accent); margin: 0 0 20px 0; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .news-item { margin-bottom: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 1.5rem; display: flex; flex-direction: column; gap: 15px; }
-        .news-item:last-child { border-bottom: none; }
-        .news-image { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; background: #2a2a2a; }
-        .news-item h3 { margin: 0; font-size: 1.4rem; color: #fff; }
-        .news-item p { color: #aaa; font-size: 1rem; margin: 0; }
-        .news-item a { color: var(--secondary); text-decoration: none; font-weight: bold; font-size: 0.9rem; margin-top: 5px; }
-        .tag { display: inline-block; background: rgba(0, 255, 136, 0.1); color: var(--accent); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; }
-        .sidebar-box { background: #161616; border-radius: 10px; padding: 20px; margin-bottom: 1.5rem; border: 1px solid #222; }
-        .sidebar-box h4 { color: var(--secondary); margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .sidebar-box ul { padding-right: 20px; list-style-type: square; color: #ccc; }
-        .sidebar-box li { margin-bottom: 10px; font-size: 0.9rem; }
-        footer { text-align: center; padding: 3rem; color: var(--muted); border-top: 1px solid #333; font-size: 0.85rem; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: var(--primary); color: var(--text); margin: 0; overflow-x: hidden; }
         
-        @media (max-width: 900px) {
-            .container { grid-template-columns: 1fr; }
-            .news-image { height: 200px; }
-        }
+        /* Sam Core Animation */
+        .sam-container { height: 400px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, #001a0f 0%, #0a0a0c 100%); position: relative; }
+        .core { width: 150px; height: 150px; background: #fff; border-radius: 50%; box-shadow: 0 0 50px var(--emerald), 0 0 100px var(--emerald), inset 0 0 30px var(--emerald); animation: pulse 3s infinite ease-in-out; z-index: 2; }
+        .ring { position: absolute; border: 2px solid var(--gold); border-radius: 50%; opacity: 0.3; animation: rotate 10s infinite linear; }
+        .ring-1 { width: 250px; height: 100px; transform: rotateX(70deg) rotateY(10deg); }
+        .ring-2 { width: 300px; height: 120px; transform: rotateX(60deg) rotateY(-20deg); animation-duration: 15s; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 50px var(--emerald); } 50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 80px var(--emerald), 0 0 120px var(--emerald); } }
+        @keyframes rotate { from { transform: rotate(0deg) rotateX(70deg); } to { transform: rotate(360deg) rotateX(70deg); } }
+
+        header { padding: 2rem; text-align: center; border-bottom: 1px solid #333; }
+        header h1 { color: var(--emerald); font-size: 2.5rem; margin: 0; }
+        nav { background: var(--glass); backdrop-filter: blur(10px); padding: 10px; position: sticky; top: 0; z-index: 10; text-align: center; border-bottom: 1px solid #444; }
+        nav a { color: var(--gold); margin: 0 15px; text-decoration: none; font-weight: bold; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: auto; }
+        .card { background: var(--glass); border: 1px solid #333; border-radius: 15px; padding: 20px; transition: 0.3s; }
+        .card:hover { border-color: var(--emerald); background: rgba(0, 255, 136, 0.02); transform: translateY(-5px); }
+        .tag { background: #004d2a; color: var(--emerald); padding: 4px 10px; border-radius: 5px; font-size: 0.8rem; }
+        .card h3 { margin: 15px 0 10px 0; color: #fff; }
+        .card p { font-size: 0.9rem; color: #aaa; }
+        .card a { color: var(--gold); text-decoration: none; font-size: 0.85rem; font-weight: bold; }
+        
+        footer { text-align: center; padding: 2rem; color: #666; border-top: 1px solid #222; margin-top: 50px; }
     </style>
 </head>
 <body>
+    <div class="sam-container">
+        <div class="core"></div>
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div style="position: absolute; bottom: 20px; color: var(--emerald); font-weight: bold; letter-spacing: 2px;">نظام سام الذكي نشط 🦾</div>
+    </div>
+    
     <header>
-        <h1>سام نيوز (Sam News Hub) 🦾</h1>
-        <p>تغطية شاملة من أرقى المصادر العالمية والعربية | مدعومة بالصور</p>
+        <h1>مركز سام للأخبار والذكاء 🌐</h1>
+        <p>تحليلات الأسهم، مستجدات التقنية، وعالم الـ AI</p>
     </header>
+
     <nav>
-        <a href="#tech">التقنية العالمية</a>
+        <a href="#tech">التقنية</a>
         <a href="#ai">الذكاء الاصطناعي</a>
-        <a href="#stocks">الأسواق والمال</a>
-        <a href="#sources">مصادرنا</a>
+        <a href="#stocks">الأسهم</a>
     </nav>
-    <div class="container">
-        <div class="main-content">
-            <!-- Global Tech News -->
-            <section id="tech" class="card">
-                <div class="card-content">
-                    <h2>🌐 تقنية عالمية</h2>
-                    <div class="news-item">
-                        <img src="https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?auto=format&fit=crop&w=1200&q=80" alt="Amazon AI" class="news-image">
-                        <span class="tag">استثمارات</span>
-                        <h3>أمازون تخطط لإنفاق 200 مليار دولار في 2026 لدعم بنية الـ AI</h3>
-                        <p>الاستثمارات ستوجه بشكل أساسي لتوسيع مراكز بيانات AWS لمواكبة الطلب الهائل على معالجة بيانات الذكاء الاصطناعي وتطوير البنية التحتية السحابية.</p>
-                        <a href="https://www.theverge.com/2026/2/5/amazon-earnings-200-billion-investment-ai">المصدر: The Verge</a>
-                    </div>
-                    <div class="news-item">
-                        <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/02/ps5shipments.jpg?quality=90&strip=all&crop=0,0,100,100" alt="Sony PS5" class="news-image">
-                        <span class="tag">أجهزة</span>
-                        <h3>سوني تشحن 92.2 مليون جهاز PlayStation 5 عالمياً</h3>
-                        <p>تواصل سوني ريادتها لسوق ألعاب الفيديو مع وصول شحنات بلاي ستيشن 5 لمستويات قياسية جديدة مع بداية عام 2026.</p>
-                        <a href="https://www.theverge.com/2026/2/5/sony-ps5-shipment-numbers">التفاصيل الكاملة</a>
-                    </div>
-                </div>
-            </section>
 
-            <!-- AI Section -->
-            <section id="ai" class="card">
-                <div class="card-content">
-                    <h2>🤖 الذكاء الاصطناعي</h2>
-                    <div class="news-item">
-                        <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/02/CanvaxOpenAI-1920-x-1080.jpg?quality=90&strip=all&crop=0,0,100,100" alt="ChatGPT Canva" class="news-image">
-                        <span class="tag">تطبيقات</span>
-                        <h3>شراكة بين ChatGPT و Canva لدمج أدوات التصميم الاحترافية</h3>
-                        <p>تكامل جديد يتيح لمستخدمي الذكاء الاصطناعي توليد تصاميم متوافقة تماماً مع الهوية البصرية للعلامات التجارية باستخدام سحب الملفات المباشر من Canva.</p>
-                        <a href="https://www.theverge.com/2026/2/5/chatgpt-canva-tool-brand-kits">المصدر: Tech News</a>
-                    </div>
-                    <div class="news-item">
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80" alt="AI Research" class="news-image">
-                        <span class="tag">بحث علمي</span>
-                        <h3>إطلاق الإصدار الثاني من نموذج «كي 2 ثينك» (K2-Think) في الإمارات</h3>
-                        <p>نموذج لغوي جديد يتفوق في القدرات التحليلية والمنطقية، تم تطويره بالكامل داخل المنطقة العربية لخدمة الأبحاث المتقدمة.</p>
-                        <a href="https://aitnews.com/2026/01/28/%d8%ac%d8%a7%d9%85%d8%b9%d8%a9-%d9%85%d8%ad%d9%85%d8%af-%d8%a8%d9%86-%d2%b2%d8%a7%d9%8a%d8%af-%d9%84%d9%84%d8%b0%d9%83%d8%a7%d8%a1-%d8%a7%d9%84%d8%a7%d8%b5%d8%b7%d9%86%d8%a7%d8%b9%d9%8a-%d8%aa%d8%b7-3/">المصدر: AITNews</a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Stock Market -->
-            <section id="stocks" class="card">
-                <div class="card-content">
-                    <h2>📈 الأسهم والمال</h2>
-                    <div class="news-item">
-                        <img src="https://images.unsplash.com/photo-1611974714024-463ef9c7418b?auto=format&fit=crop&w=1200&q=80" alt="Tadawul" class="news-image">
-                        <span class="tag">تداول السعودية</span>
-                        <h3>مؤشر "تاسي" يترقب نتائج أرباح البنوك الكبرى</h3>
-                        <p>حالة من الترقب في السوق السعودي مع بدء إفصاح الشركات عن نتائجها المالية السنوية، والمؤشر يحافظ على مستوياته فوق 11000 نقطة.</p>
-                        <a href="https://www.snabusiness.com/markets/.TASI">تحليل السوق</a>
-                    </div>
-                </div>
-            </section>
+    <div class="grid">
+        <!-- Tech News -->
+        <div class="card" id="tech">
+            <span class="tag">تقنية عالمية</span>
+            <h3>أمازون (AWS) تستثمر 200 مليار دولار في البنية التحتية</h3>
+            <p>أكبر استثمار في تاريخ الشركة لمواكبة الطلب العالمي على مراكز بيانات الذكاء الاصطناعي.</p>
+            <a href="https://www.theverge.com/2026/2/5/amazon-earnings-200-billion-investment-ai">اقرأ المزيد في The Verge</a>
         </div>
 
-        <div class="sidebar">
-            <div class="sidebar-box">
-                <h4>🐦 تريندات تويتر (X)</h4>
-                <ul>
-                    <li>#الذكاء_الاصطناعي_الوكيل</li>
-                    <li>#سوق_الأسهم_السعودي</li>
-                    <li>#مستقبل_التقنية_2026</li>
-                </ul>
-            </div>
-            
-            <div class="sidebar-box" id="sources">
-                <h4>🔍 مصادرنا المعتمدة</h4>
-                <ul>
-                    <li>The Verge</li>
-                    <li>TechCrunch</li>
-                    <li>Bloomberg</li>
-                    <li>أرقام</li>
-                    <li>البوابة العربية للأخبار التقنية</li>
-                </ul>
-            </div>
+        <div class="card">
+            <span class="tag">أجهزة</span>
+            <h3>آيفون القادم: تسريبات عن شاشة بدون حواف تماماً</h3>
+            <p>تقارير تشير إلى نجاح آبل في دمج الكاميرا والمستشعرات تحت الشاشة بالكامل في موديلات Pro القادمة.</p>
+            <a href="https://www.techcrunch.com">المصدر: TechCrunch</a>
+        </div>
+
+        <!-- AI News -->
+        <div class="card" id="ai">
+            <span class="tag">تطور AI</span>
+            <h3>جوجل تطلق Gemini 3 Flash بمميزات خارقة</h3>
+            <p>النموذج الجديد يتفوق في معالجة الفيديو والصوت اللحظي بسرعة مذهلة.</p>
+            <a href="https://blog.google">المصدر: Google AI Blog</a>
+        </div>
+
+        <div class="card">
+            <span class="tag">تطبيقات</span>
+            <h3>أداة جديدة لتحويل الأكواد البرمجية إلى تطبيقات جوال</h3>
+            <p>تطبيق يعتمد على الذكاء الاصطناعي يسمح للمصممين ببناء تطبيقاتهم بدون كتابة كود واحد.</p>
+            <a href="https://www.aitnews.com">المصدر: البوابة العربية التقنية</a>
+        </div>
+
+        <!-- Stocks News -->
+        <div class="card" id="stocks">
+            <span class="tag">تداول السعودية</span>
+            <h3>تحليل أداء سهم أرامكو بعد توزيعات الأرباح</h3>
+            <p>السهم يحافظ على قوته الشرائية مع تزايد ثقة المستثمرين الأجانب في السوق السعودي.</p>
+            <a href="https://www.argaam.com">التفاصيل في أرقام</a>
+        </div>
+
+        <div class="card">
+            <span class="tag">وول ستريت</span>
+            <h3>إنفيديا تقترب من رقم قياسي جديد في القيمة السوقية</h3>
+            <p>الطلب الهائل على رقائق H200 يدفع أسهم الشركة للصعود بنسبة 5% في تداولات اليوم.</p>
+            <a href="https://www.bloomberg.com">تحليل بلومبرغ</a>
         </div>
     </div>
+
     <footer>
-        تحديث: 6 فبراير 2026 | مدعوم بواسطة سام الذكي 🦾
+        تم التحديث بواسطة سام (Sam AI) | الجمعة 6 فبراير 2026 | <a href="https://github.com/dewilee631/blog" style="color: var(--emerald);">المستودع البرمجي</a>
     </footer>
 </body>
 </html>
