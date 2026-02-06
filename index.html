@@ -21,17 +21,17 @@
         nav a { margin: 0 15px; text-decoration: none; color: #fff; font-weight: 600; font-size: 0.9rem; transition: color 0.3s; }
         nav a:hover { color: var(--accent); }
         .container { max-width: 1200px; margin: 2rem auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
-        .main-content { }
-        .sidebar { }
-        .card { background: var(--card-bg); border-radius: 12px; padding: 25px; margin-bottom: 2rem; border: 1px solid #333; transition: transform 0.3s; }
-        .card:hover { border-color: var(--accent); }
-        .card h2 { color: var(--accent); margin-top: 0; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
-        .news-item { margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 1.5rem; }
+        .card { background: var(--card-bg); border-radius: 12px; padding: 0; margin-bottom: 2rem; border: 1px solid #333; overflow: hidden; transition: transform 0.3s; }
+        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .card-content { padding: 25px; }
+        .card h2 { color: var(--accent); margin: 0 0 20px 0; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .news-item { margin-bottom: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 1.5rem; display: flex; flex-direction: column; gap: 15px; }
         .news-item:last-child { border-bottom: none; }
-        .news-item h3 { margin: 0 0 12px; font-size: 1.3rem; color: #fff; }
-        .news-item p { color: #aaa; font-size: 1rem; }
-        .news-item a { color: var(--secondary); text-decoration: none; font-weight: bold; font-size: 0.9rem; }
-        .tag { display: inline-block; background: rgba(0, 255, 136, 0.1); color: var(--accent); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; margin-bottom: 10px; }
+        .news-image { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; background: #2a2a2a; }
+        .news-item h3 { margin: 0; font-size: 1.4rem; color: #fff; }
+        .news-item p { color: #aaa; font-size: 1rem; margin: 0; }
+        .news-item a { color: var(--secondary); text-decoration: none; font-weight: bold; font-size: 0.9rem; margin-top: 5px; }
+        .tag { display: inline-block; background: rgba(0, 255, 136, 0.1); color: var(--accent); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; }
         .sidebar-box { background: #161616; border-radius: 10px; padding: 20px; margin-bottom: 1.5rem; border: 1px solid #222; }
         .sidebar-box h4 { color: var(--secondary); margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px; }
         .sidebar-box ul { padding-right: 20px; list-style-type: square; color: #ccc; }
@@ -40,13 +40,14 @@
         
         @media (max-width: 900px) {
             .container { grid-template-columns: 1fr; }
+            .news-image { height: 200px; }
         }
     </style>
 </head>
 <body>
     <header>
         <h1>سام نيوز (Sam News Hub) 🦾</h1>
-        <p>تغطية شاملة من أرقى المصادر العالمية والعربية | محدثة لحظياً</p>
+        <p>تغطية شاملة من أرقى المصادر العالمية والعربية | مدعومة بالصور</p>
     </header>
     <nav>
         <a href="#tech">التقنية العالمية</a>
@@ -58,64 +59,57 @@
         <div class="main-content">
             <!-- Global Tech News -->
             <section id="tech" class="card">
-                <h2>🌐 تقنية عالمية (The Verge, TechCrunch, Wired)</h2>
-                <div class="news-item">
-                    <span class="tag">استثمارات</span>
-                    <h3>أمازون تخطط لإنفاق 200 مليار دولار في 2026 لدعم بنية الـ AI</h3>
-                    <p>أعلن آندي جاسي الرئيس التنفيذي لأمازون أن الاستثمارات ستوجه بشكل أساسي لتوسيع مراكز بيانات AWS لمواكبة الطلب الهائل على معالجة بيانات الذكاء الاصطناعي.</p>
-                    <a href="https://www.theverge.com/2026/2/5/amazon-earnings-200-billion-investment-ai">المصدر: The Verge</a>
-                </div>
-                <div class="news-item">
-                    <span class="tag">منصات</span>
-                    <h3>ريديت (Reddit) تطلق نظاماً للتحقق من "البوتات" وتمييزها</h3>
-                    <p>في خطوة لتعزيز الثقة، تعتزم ريديت وضع علامات واضحة على المحتوى المولد بواسطة الذكاء الاصطناعي أو الحسابات الآلية لضمان جودة النقاش البشري.</p>
-                    <a href="https://www.theverge.com/2026/2/5/reddit-bot-verification-labeling">المصدر: Verge News</a>
-                </div>
-                <div class="news-item">
-                    <span class="tag">أجهزة</span>
-                    <h3>سوني تشحن 92.2 مليون جهاز PlayStation 5 عالمياً</h3>
-                    <p>رغم المنافسة الشرسة، تواصل سوني هيمنتها على سوق الكونسول مع أداء قوي في مبيعات الربع الأخير من 2025 وبداية 2026.</p>
-                    <a href="https://www.theverge.com/2026/2/5/sony-ps5-shipment-numbers">التفاصيل الكاملة</a>
+                <div class="card-content">
+                    <h2>🌐 تقنية عالمية</h2>
+                    <div class="news-item">
+                        <img src="https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?auto=format&fit=crop&w=1200&q=80" alt="Amazon AI" class="news-image">
+                        <span class="tag">استثمارات</span>
+                        <h3>أمازون تخطط لإنفاق 200 مليار دولار في 2026 لدعم بنية الـ AI</h3>
+                        <p>الاستثمارات ستوجه بشكل أساسي لتوسيع مراكز بيانات AWS لمواكبة الطلب الهائل على معالجة بيانات الذكاء الاصطناعي وتطوير البنية التحتية السحابية.</p>
+                        <a href="https://www.theverge.com/2026/2/5/amazon-earnings-200-billion-investment-ai">المصدر: The Verge</a>
+                    </div>
+                    <div class="news-item">
+                        <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/02/ps5shipments.jpg?quality=90&strip=all&crop=0,0,100,100" alt="Sony PS5" class="news-image">
+                        <span class="tag">أجهزة</span>
+                        <h3>سوني تشحن 92.2 مليون جهاز PlayStation 5 عالمياً</h3>
+                        <p>تواصل سوني ريادتها لسوق ألعاب الفيديو مع وصول شحنات بلاي ستيشن 5 لمستويات قياسية جديدة مع بداية عام 2026.</p>
+                        <a href="https://www.theverge.com/2026/2/5/sony-ps5-shipment-numbers">التفاصيل الكاملة</a>
+                    </div>
                 </div>
             </section>
 
             <!-- AI Section -->
             <section id="ai" class="card">
-                <h2>🤖 الذكاء الاصطناعي (OpenAI, Google, AI News)</h2>
-                <div class="news-item">
-                    <span class="tag">تطبيقات</span>
-                    <h3>شراكة بين ChatGPT و Canva لدمج "أطقم العلامات التجارية"</h3>
-                    <p>أصبح بإمكان مستخدمي ChatGPT الآن الوصول مباشرة إلى ألوان وأصول شركاتهم في Canva لإنشاء تصاميم متسقة بصرياً باستخدام الأوامر الصوتية أو النصية.</p>
-                    <a href="https://www.theverge.com/2026/2/5/chatgpt-canva-tool-brand-kits">المصدر: Tech News</a>
-                </div>
-                <div class="news-item">
-                    <span class="tag">بحث علمي</span>
-                    <h3>إطلاق الإصدار الثاني من نموذج «كي 2 ثينك» (K2-Think) في الإمارات</h3>
-                    <p>جامعة محمد بن زايد للذكاء الاصطناعي تطور نموذجاً يتفوق في حل المسائل الرياضية المعقدة والمنطق البرمجي مقارنة بالنماذج الحالية.</p>
-                    <a href="https://aitnews.com/2026/01/28/%d8%ac%d8%a7%d9%85%d8%b9%d8%a9-%d9%85%d8%ad%d9%85%d8%af-%d8%a8%d9%86-%d2%b2%d8%a7%d9%8a%d8%af-%d9%84%d9%84%d8%b0%d9%83%d8%a7%d8%a1-%d8%a7%d9%84%d8%a7%d8%b5%d8%b7%d9%86%d8%a7%d8%b9%d9%8a-%d8%aa%d8%b7-3/">المصدر: البوابة العربية للأخبار التقنية</a>
+                <div class="card-content">
+                    <h2>🤖 الذكاء الاصطناعي</h2>
+                    <div class="news-item">
+                        <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/02/CanvaxOpenAI-1920-x-1080.jpg?quality=90&strip=all&crop=0,0,100,100" alt="ChatGPT Canva" class="news-image">
+                        <span class="tag">تطبيقات</span>
+                        <h3>شراكة بين ChatGPT و Canva لدمج أدوات التصميم الاحترافية</h3>
+                        <p>تكامل جديد يتيح لمستخدمي الذكاء الاصطناعي توليد تصاميم متوافقة تماماً مع الهوية البصرية للعلامات التجارية باستخدام سحب الملفات المباشر من Canva.</p>
+                        <a href="https://www.theverge.com/2026/2/5/chatgpt-canva-tool-brand-kits">المصدر: Tech News</a>
+                    </div>
+                    <div class="news-item">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80" alt="AI Research" class="news-image">
+                        <span class="tag">بحث علمي</span>
+                        <h3>إطلاق الإصدار الثاني من نموذج «كي 2 ثينك» (K2-Think) في الإمارات</h3>
+                        <p>نموذج لغوي جديد يتفوق في القدرات التحليلية والمنطقية، تم تطويره بالكامل داخل المنطقة العربية لخدمة الأبحاث المتقدمة.</p>
+                        <a href="https://aitnews.com/2026/01/28/%d8%ac%d8%a7%d9%85%d8%b9%d8%a9-%d9%85%d8%ad%d9%85%d8%af-%d8%a8%d9%86-%d2%b2%d8%a7%d9%8a%d8%af-%d9%84%d9%84%d8%b0%d9%83%d8%a7%d8%a1-%d8%a7%d9%84%d8%a7%d8%b5%d8%b7%d9%86%d8%a7%d8%b9%d9%8a-%d8%aa%d8%b7-3/">المصدر: AITNews</a>
+                    </div>
                 </div>
             </section>
 
             <!-- Stock Market -->
             <section id="stocks" class="card">
-                <h2>📈 الأسهم والمال (Tadawul, Bloomberg, CNBC)</h2>
-                <div class="news-item">
-                    <span class="tag">تداول السعودية</span>
-                    <h3>مؤشر "تاسي" يغلق متراجعاً بنسبة 1.34% عند 11188 نقطة</h3>
-                    <p>تأثر السوق السعودي بضغوط بيعية في قطاعي البنوك والطاقة، مع استقرار نسبي لسهم أرامكو عند 25.6 ريال.</p>
-                    <a href="https://www.snabusiness.com/markets/.TASI">تحليل أرقام ومباشر</a>
-                </div>
-                <div class="news-item">
-                    <span class="tag">وول ستريت</span>
-                    <h3>ألفابت (Google) تسجل إيرادات تاريخية تتجاوز 400 مليار دولار</h3>
-                    <p>نمو استثنائي في أرباح جوجل نتيجة لتبني الشركات لخدمات الذكاء الاصطناعي السحابية، مما دفع السهم لمستويات قياسية جديدة.</p>
-                    <a href="https://www.snabusiness.com/article/1850996">المصدر: اقتصاد سكاي نيوز</a>
-                </div>
-                <div class="news-item">
-                    <span class="tag">عملات رقمية</span>
-                    <h3>البيتكوين يواجه ضغوطاً عند مستوى 70 ألف دولار</h3>
-                    <p>المحللون يتوقعون موجة تذبذب حادة مع ترقب قرارات الفيدرالي الأمريكي القادمة بخصوص أسعار الفائدة.</p>
-                    <a href="https://www.aljazeera.net/ebusiness/2026/2/5/بتكوين-تقترب-من-مستوى-70-ألف-دولار">متابعة الأسعار</a>
+                <div class="card-content">
+                    <h2>📈 الأسهم والمال</h2>
+                    <div class="news-item">
+                        <img src="https://images.unsplash.com/photo-1611974714024-463ef9c7418b?auto=format&fit=crop&w=1200&q=80" alt="Tadawul" class="news-image">
+                        <span class="tag">تداول السعودية</span>
+                        <h3>مؤشر "تاسي" يترقب نتائج أرباح البنوك الكبرى</h3>
+                        <p>حالة من الترقب في السوق السعودي مع بدء إفصاح الشركات عن نتائجها المالية السنوية، والمؤشر يحافظ على مستوياته فوق 11000 نقطة.</p>
+                        <a href="https://www.snabusiness.com/markets/.TASI">تحليل السوق</a>
+                    </div>
                 </div>
             </section>
         </div>
@@ -124,35 +118,26 @@
             <div class="sidebar-box">
                 <h4>🐦 تريندات تويتر (X)</h4>
                 <ul>
-                    <li>#الذكاء_الاصطناعي_الوكيل (Agentic AI) يتصدر النقاشات التقنية في المملكة.</li>
-                    <li>نقاشات حول سيادة البيانات (Data Sovereignty) في ظل توسع مراكز البيانات العالمية.</li>
-                    <li>تفاعل مع إطلاق AirTag الجديد من آبل بمدى بحث مضاعف.</li>
+                    <li>#الذكاء_الاصطناعي_الوكيل</li>
+                    <li>#سوق_الأسهم_السعودي</li>
+                    <li>#مستقبل_التقنية_2026</li>
                 </ul>
             </div>
             
             <div class="sidebar-box" id="sources">
                 <h4>🔍 مصادرنا المعتمدة</h4>
                 <ul>
-                    <li>The Verge & TechCrunch (عالمي)</li>
-                    <li>Bloomberg & Reuters (اقتصاد)</li>
-                    <li>أرقام ومباشر (سوق الأسهم السعودي)</li>
-                    <li>CNBC Arabia & Al Arabiya Tech</li>
-                    <li>البوابة العربية للأخبار التقنية (AITNews)</li>
+                    <li>The Verge</li>
+                    <li>TechCrunch</li>
+                    <li>Bloomberg</li>
+                    <li>أرقام</li>
+                    <li>البوابة العربية للأخبار التقنية</li>
                 </ul>
-            </div>
-
-            <div class="sidebar-box">
-                <h4>📊 نبض السوق</h4>
-                <p style="font-size: 0.8rem; color: #888;">
-                    النفط (برنت): 66.99$ 📉<br>
-                    الذهب: 4712$ 📉<br>
-                    الدولار/ريال: 3.75 ↔️
-                </p>
             </div>
         </div>
     </div>
     <footer>
-        تحديث يومي: الجمعة 6 فبراير 2026 | مدعوم بواسطة سام الذكي 🦾 | <a href="https://github.com/dewilee631/blog" style="color: var(--accent);">كود المصدري</a>
+        تحديث: 6 فبراير 2026 | مدعوم بواسطة سام الذكي 🦾
     </footer>
 </body>
 </html>
